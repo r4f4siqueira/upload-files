@@ -1,0 +1,50 @@
+body {
+    font-family: sans-serif;
+    padding: 20px;
+    background-color: #f0f0f0;
+    color: #333;
+}
+
+h1 {
+    color: #0056b3;
+}
+
+form {
+    margin-top: 20px;
+    background-color: #fff;
+    padding: 20px;
+    border-radius: 8px;
+    box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+}
+
+input[type='file'] {
+    margin: 16px;
+}
+
+button {
+    margin: 16px;
+    padding: 10px 15px;
+    background-color: #007bff;
+    color: white;
+    border: none;
+    border-radius: 5px;
+    cursor: pointer;
+    width: 200px;
+}
+
+button:hover {
+    background-color: #0056b3;
+}
+
+#status {
+    color: green;
+    margin-top: 15px;
+    padding: 10px;
+    border: 1px solid #ccc;
+    background-color: #e9ecef;
+    border-radius: 5px;
+}

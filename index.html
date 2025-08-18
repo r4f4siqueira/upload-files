@@ -1,0 +1,36 @@
+<!DOCTYPE html>
+<html lang="pt-br">
+    <head>
+        <meta charset="UTF-8" />
+        <meta
+            name="viewport"
+            content="width=device-width, initial-scale=1.0"
+        />
+        <title>Upload de Arquivo</title>
+        <link
+            rel="stylesheet"
+            href="style.css"
+        />
+    </head>
+    <body>
+        <h1>Upload de Arquivo</h1>
+        <p>Selecione o arquivo que deseja enviar para o computador, só pode enviar <b>UM ARQUIVO</b> por vêz !</p>
+
+        <form
+            id="uploadForm"
+            enctype="multipart/form-data"
+        >
+            <label for="fileInput">Selecione um arquivo</label>
+            <input
+                type="file"
+                id="fileInput"
+                name="arquivo"
+            />
+            <button type="submit">Enviar Arquivo</button>
+        </form>
+
+        <div id="status"></div>
+
+        <script src="script.js"></script>
+    </body>
+</html>
