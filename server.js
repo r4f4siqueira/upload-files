@@ -83,7 +83,7 @@ const server = http.createServer((req, res) => {
                     return;
                 }
 
-                console.log(`Arquivo salvo em: ${uploadDir}/${filename}`);
+                console.log(`Arquivo: ${filename}, Esta na pasta: ${uploadDir}`);
                 res.writeHead(200, { 'Content-Type': 'application/json' });
                 res.end(JSON.stringify({ message: `O arquivo "${filename}" foi salvo com sucesso!` }));
             });
@@ -111,9 +111,9 @@ function getIPv4() {
 server.listen(port, () => {
     console.table({
         'Link para acessar Upload-Files': `http://${getIPv4()}:${port}` || 'Não encontrado',
-        'Arquivos será salvo em': uploadDir,
+        'Local dos arquivos': uploadDir,
         Porta: port,
-        'Versão do node': process.version,
+        Node: process.version,
         'Mais informações': 'https://github.com/r4f4siqueira/upload-files',
     });
 });
