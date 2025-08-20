@@ -1,6 +1,7 @@
 const http = require('http');
 const fs = require('fs');
 const path = require('path');
+const os = require('os');
 
 const port = 3000;
 const uploadDir = path.join(__dirname, 'uploads');
@@ -59,8 +60,15 @@ const server = http.createServer((req, res) => {
 
             const fileStart = buffer.indexOf('filename="') + 10;
             const fileEnd = buffer.indexOf('"\r\n', fileStart);
-            const filename = buffer.toString('utf-8', fileStart, fileEnd);
-
+            // Fazendo isso para não sobscrever arquivos enviados com o mesmo nome em datas diferentes
+            const dateString = new Date()
+                .toLocaleString('pt-br', {
+                    day: '2-digit',
+                    month: '2-digit',
+                    year: 'numeric',
+                })
+                .replace(/[/]/g, '-');
+            const filename = `${dateString} ${buffer.toString('utf-8', fileStart, fileEnd)}`;
             const dataStart = buffer.indexOf('\r\n\r\n') + 4;
             const dataEnd = buffer.lastIndexOf(`--${boundary}--`) - 2;
 
@@ -75,7 +83,7 @@ const server = http.createServer((req, res) => {
                     return;
                 }
 
-                console.log(`Arquivo salvo: ${filename}`);
+                console.log(`Arquivo salvo em: ${uploadDir}/${filename}`);
                 res.writeHead(200, { 'Content-Type': 'application/json' });
                 res.end(JSON.stringify({ message: `O arquivo "${filename}" foi salvo com sucesso!` }));
             });
@@ -86,6 +94,26 @@ const server = http.createServer((req, res) => {
     }
 });
 
+// Pega o IPvA do Servidor para mostrar no console
+function getIPv4() {
+    const interfaces = os.networkInterfaces();
+    for (const interfaceName in interfaces) {
+        const addresses = interfaces[interfaceName];
+        for (const address of addresses) {
+            if (address.family === 'IPv4' && !address.internal) {
+                return address.address;
+            }
+        }
+    }
+    return null; // Retorna null se nenhum endereço IPv4 válido for encontrado
+}
+
 server.listen(port, () => {
-    console.log(`Servidor rodando em http://127.0.0.1:${port}`);
+    console.table({
+        'Link para acessar Upload-Files': `http://${getIPv4()}:${port}` || 'Não encontrado',
+        'Arquivos será salvo em': uploadDir,
+        Porta: port,
+        'Versão do node': process.version,
+        'Mais informações': 'https://github.com/r4f4siqueira/upload-files',
+    });
 });
