@@ -1,9 +1,10 @@
 ---
-name: Bug Report
+name: Bug Report BR
 about: Relatar um problema encontrado no projeto.
-title: '[BUG] Descrição breve do problema'
+title: "[BUG] Descrição breve do problema"
 labels: bug
 assignees: ''
+
 ---
 
 ## Ambiente
