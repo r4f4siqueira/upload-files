@@ -9,7 +9,10 @@ Este é um projeto simples e completo para demonstrar como criar um sistema de u
 -   [Funcionalidades](#funcionalidades)
 -   [Estrutura do projeto](#estrutura-do-projeto)
 -   [Como Executar](#como-executar)
--   [Mais Informações](#mais-informações)
+-   [Informações Adicionais](#informações-adicionais)
+    -   [Criar arquivo de Execução `.bat` ou `.sh`](#criar-arquivo-de-execução-bat-ou-sh)
+        -   [Conteúdo do arquivo `.bat`](#conteúdo-do-arquivo-bat)
+    -   [Arquivo `plus`](#arquivo-plusjs)
 
 ## Funcionalidades
 
@@ -54,6 +57,20 @@ Este é um projeto simples e completo para demonstrar como criar um sistema de u
 
 4. Abra seu navegador e acesse a URL 👉 http://127.0.0.1:3000/
 
-## Mais Informações
+## Informações Adicionais
+
+### Criar arquivo de Execução `.bat` ou `.sh`
+
+Este arquivo ajuda usuários mais leigos, como por exemplo na igreja que frequento várias pessoas também usam o computador para trasmitir no projetor e logo deixei orientado para quando for passar um arquivo para o computador basta dar dois `clikes` no atalho que deixei na area de tabalho, ele abre o terminal com o IP para acessar através do navegador;
+
+#### Conteúdo do arquivo `.bat`
+
+```cmd
+@echo off
+REM Inicia o servidor Node.js
+start cmd /k "node server.js"
+```
+
+### Arquivo `plus.js`
 
 O arquivo `plus.js` é uma demonstração de que pode rodar toda aplicação em um único arquivo _.js_, porém para que o projeto seja mais legível e fácil de manter separei os arquivos conforme mostrado na [Estrutura do Projeto](#estrutura-do-projeto).
