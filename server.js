@@ -98,6 +98,15 @@ const server = http.createServer((req, res) => {
 function getIPv4() {
     const interfaces = os.networkInterfaces();
     for (const interfaceName in interfaces) {
+        // Ignora interfaces virtuais (WSL, Hyper-V, etc.)
+        if (
+            interfaceName.toLowerCase().includes('virtual') ||
+            interfaceName.toLowerCase().includes('wsl') ||
+            interfaceName.toLowerCase().includes('vethernet')
+        ) {
+            continue;
+        }
+
         const addresses = interfaces[interfaceName];
         for (const address of addresses) {
             if (address.family === 'IPv4' && !address.internal) {
